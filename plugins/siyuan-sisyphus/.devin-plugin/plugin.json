@@ -1,0 +1,30 @@
+{
+  "name": "siyuan-sisyphus",
+  "displayName": "SiYuan Sisyphus MCP",
+  "description": "Read, search, and safely edit your local SiYuan notes, databases, and flashcards with permission-checked writes",
+  "shortDescription": "Read and safely edit SiYuan notes",
+  "setup": {
+    "notice": "Runs on your own machine: it needs the local SiYuan app with the Sisyphus plugin, so it works in Devin Desktop or the CLI, not in cloud sessions.",
+    "steps": [
+      "Install the Sisyphus plugin from the SiYuan bazaar and keep SiYuan running",
+      "Copy the API token from SiYuan Settings → About and save it as SIYUAN_TOKEN"
+    ]
+  },
+  "homepage": "https://github.com/yangtaihong59/siyuan-plugins-mcp-sisyphus",
+  "repository": "https://github.com/yangtaihong59/siyuan-plugins-mcp-sisyphus",
+  "keywords": [
+    "Productivity"
+  ],
+  "mcpServers": {
+    "siyuan-sisyphus": {
+      "command": "node",
+      "args": [
+        "/Users/heyunlong/siyuan/data/plugins/siyuan-plugins-mcp-sisyphus/mcp-server.cjs"
+      ],
+      "env": {
+        "SIYUAN_API_URL": "http://127.0.0.1:6806",
+        "SIYUAN_TOKEN": "${SIYUAN_TOKEN}"
+      }
+    }
+  }
+}

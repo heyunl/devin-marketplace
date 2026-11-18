@@ -8,6 +8,7 @@ under `optionalPlugins`.
 | Plugin | What it does |
 |---|---|
 | [`haina`](plugins/haina) — 海纳-什么值得买 MCP | 什么值得买 deals, product search, specs, SKUs and reviews |
+| [`siyuan-sisyphus`](plugins/siyuan-sisyphus) — SiYuan Sisyphus MCP | Read and safely edit local SiYuan notes (Desktop/CLI only; needs `SIYUAN_TOKEN`) |
 
 ## Installing in Devin
 
