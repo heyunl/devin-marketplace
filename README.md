@@ -1,48 +1,49 @@
-# Devin marketplace
+# heyunl Devin marketplace
 
-Plugins for Devin's marketplace.
+Personal Devin plugin marketplace, using the same layout as
+[CognitionAI/devin-marketplace](https://github.com/CognitionAI/devin-marketplace).
+The root `.devin-plugin/plugin.json` is a meta-plugin that lists every offering
+under `optionalPlugins`.
 
-## Using a plugin
+| Plugin | What it does |
+|---|---|
+| [`haina`](plugins/haina) — 海纳-什么值得买 MCP | 什么值得买 deals, product search, specs, SKUs and reviews |
 
-In Devin: Settings → Marketplace, pick a plugin, install it. Credentials a
-server needs are supplied in Devin; nothing in this repo holds one.
+## Installing in Devin
 
-Or reference a plugin from your own plugin manifest, pinned to a commit of
-this repo:
+Customize → Plugins → Add plugin → **From repository**, enter
+`heyunl/devin-marketplace`:
 
-```json
-{
-  "requiredPlugins": [
-    {
-      "source": "git-subdir",
-      "url": "https://github.com/CognitionAI/devin-marketplace.git",
-      "path": "plugins/notion",
-      "sha": "<commit>"
-    }
-  ]
-}
-```
+* leave the subdirectory empty to install the whole marketplace, or
+* set it to `plugins/<slug>` to install a single plugin.
 
-## Contributing
+Then open Customize → MCPs and **Connect** the server, entering its credential
+(for `haina`: `HAINA_API_KEY`, the 海纳 open-platform API key). Credentials live
+in Devin only; nothing in this repo holds one.
+
+Merging to `main` is the release: run **Plugin settings → Reindex plugins** in
+Customize and start a new session.
+
+## Adding a plugin
 
 See [`.agents/skills/adding-a-plugin/SKILL.md`](.agents/skills/adding-a-plugin/SKILL.md).
 
-Write plugin `description` copy as one concise, action-oriented sentence about
-what users can do and the value they get. Aim for 60–130 characters (about 200
-maximum), without a trailing period, and expand on `shortDescription` rather
-than repeating it. Avoid filler such as "integration" or "MCP server".
+* **Your own plugin**: create `plugins/<slug>/.devin-plugin/plugin.json` and add
+  `"./plugins/<slug>"` to `optionalPlugins`.
+* **An official plugin**: add a pinned reference to `optionalPlugins` instead of
+  copying it:
 
-Put requirements outside the install form and connection caveats in optional
-`setup`, immediately after `shortDescription`:
-`{"notice": "...", "steps": ["..."]}`. Use a one- or two-sentence notice and
-ordered steps without environment-specific URLs. At least one key is required;
-`notice` must be a non-empty string and `steps` a non-empty list of non-empty
-strings. No other keys are allowed. Do not repeat credential fields, placeholder
-names, OAuth sign-in instructions, or default domains already handled by the
-install form. Only add `setup` for external steps or meaningful connection caveats.
+  ```json
+  {
+    "source": "git-subdir",
+    "url": "https://github.com/CognitionAI/devin-marketplace.git",
+    "path": "plugins/notion",
+    "sha": "<40-hex commit>"
+  }
+  ```
 
-Contributions are accepted under the [Contributor License Agreement](CLA.md);
-opening a pull request means you agree to it.
+Run `python3 scripts/validate.py --fix` (and `--fetch` to check upstream pins)
+before committing; CI runs the same check.
 
 ## License
 
