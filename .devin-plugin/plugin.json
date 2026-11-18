@@ -5,6 +5,7 @@
   "repository": "https://github.com/heyunl/devin-marketplace",
   "skills": [],
   "optionalPlugins": [
-    "./plugins/haina"
+    "./plugins/haina",
+    "./plugins/siyuan-sisyphus"
   ]
 }
